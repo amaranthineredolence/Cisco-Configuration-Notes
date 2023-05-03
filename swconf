@@ -1,0 +1,109 @@
+--GATEWAY--
+conf t 
+ip default-gateway x.x.x.x
+
+
+
+--VLAN102 (ACCESS), VLAN920 (MANAGEMENT)--
+
+**vlan ip address**
+conf t
+vlan 102/920
+name ACCESS/MANAGEMENT
+
+interface vlan (trunk port için, 920 MANAGEMENT VLAN)
+ip address x.x.x.x x.x.x.x
+
+
+
+--ACCESS--
+
+interface range gig1/0/-?
+switchport access vlan 102
+switchport mode access
+
+conf t
+ip dhcp snooping vlan 102 (access port dhcp trust için)
+
+
+
+--MANAGEMENT--
+
+interface gig1/0/x
+switchport trunk allowed vlan 102,920
+switchport mode trunk
+ip dhcp snooping trust (trunk port manage vlan920 için)
+
+**add
+
+conf t 
+ip dhcp snooping
+
+
+
+--LINE VTY--
+
+line vty 5 15
+** privilege level 15
+transport input ssh
+no login
+
+line vty 0 4
+** privilege level 15
+transport input ssh
+no login
+
+
+
+--SSH--
+
+conf t
+hostname xxxx
+ip domain-name gazi.edu.tr
+username xxxx privilege 15 secret xxxx (crypto)
+
+crypto key generate rsa (1024)
+ip ssh time-out 30 
+ip ssh authentication-retries 4
+ip ssh version 2
+
+
+   
+sh ip ssh
+sh ssh
+
+
+
+--SPANNING TREE--
+
+interface gig?
+spanning-tree portfast
+
+conf t 
+spanning-tree mode rapid-pvst
+no spanning-tree etherchannel guard misconfig
+spanning-tree extend system-id
+
+
+
+--HTTP SERVER--
+
+no ip http server
+no ip http secure-server
+
+
+-----
+conf t 
+aaa new-model
+
+shutdown (interface)
+
+
+
+
+
+
+
+10.199.0.145
+10.199.0.1
+255.255.0.0
