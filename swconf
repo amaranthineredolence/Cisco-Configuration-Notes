@@ -4,14 +4,14 @@ ip default-gateway x.x.x.x
 
 
 
---VLAN102 (ACCESS), VLAN920 (MANAGEMENT)--
+--VLANxxx (ACCESS), VLANxxx (MANAGEMENT)--
 
 **vlan ip address**
 conf t
 vlan 102/920
 name ACCESS/MANAGEMENT
 
-interface vlan (trunk port için, 920 MANAGEMENT VLAN)
+interface vlan (for trunkport xxx MANAGEMENT VLAN)
 ip address x.x.x.x x.x.x.x
 
 
@@ -19,20 +19,20 @@ ip address x.x.x.x x.x.x.x
 --ACCESS--
 
 interface range gig1/0/-?
-switchport access vlan 102
+switchport access vlan xxx
 switchport mode access
 
 conf t
-ip dhcp snooping vlan 102 (access port dhcp trust için)
+ip dhcp snooping vlan xxx (for access port dhcp trust)
 
 
 
 --MANAGEMENT--
 
 interface gig1/0/x
-switchport trunk allowed vlan 102,920
+switchport trunk allowed vlan xxx,xxx
 switchport mode trunk
-ip dhcp snooping trust (trunk port manage vlan920 için)
+ip dhcp snooping trust (for trunk port manage vlanxxx)
 
 **add
 
@@ -59,7 +59,7 @@ no login
 
 conf t
 hostname xxxx
-ip domain-name gazi.edu.tr
+ip domain-name xxx.com
 username xxxx privilege 15 secret xxxx (crypto)
 
 crypto key generate rsa (1024)
@@ -100,10 +100,3 @@ shutdown (interface)
 
 
 
-
-
-
-
-10.199.0.145
-10.199.0.1
-255.255.0.0
