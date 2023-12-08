@@ -1,0 +1,67 @@
+--VTP--
+vtp mode server 
+vtp domain L3SW
+vtp password admin
+
+
+--DHCP--
+ip dhcp excluded-address 10.10.10.0 10.10.10.10
+ip dhcp excluded-address 10.10.20.0 10.10.20.10
+ip dhcp excluded-address 10.10.30.0 10.10.30.10
+!
+ip dhcp pool vlan10
+ network 10.10.10.0 255.255.255.0
+ default-router 10.10.10.1 
+!
+ip dhcp pool vlan20
+ network 10.10.20.0 255.255.255.0
+ default-router 10.10.20.1 
+!
+ip dhcp pool vlan30
+ network 10.10.30.0 255.255.255.0
+ default-router 10.10.30.1 
+!
+service dhcp (interface)
+(sh ip dhcp binding)
+(sh ip dhcp pool)
+
+
+--SSH--
+conf t 
+hostname L2SW3
+ip domain-name L2SW3
+username admin privilege 15 secret admin
+crypto key generate rsa
+1024
+ip ssh time-out 30
+ip ssh authentication-retries 4
+ip ssh ver 2
+line vty 0 15
+transport input ssh 
+login local
+exi
+
+
+--EXTENDED ACL--
+ip access-list extended ACL1020
+permit ip/ip host [IP] any
+deny ip 10.10.10.0 0.0.0.255 10.20.20.0 0.0.0.255 (wildcard)
+permit ip host [ip] host [ip]
+!
+ip access-group ACL1020 in (apply to the interface [vlan/line])
+
+
+--SECURITY--
+enable password admin123.*
+!
+username admin privilege 15 secret 5 $1$L.G4$wBUM5fWdu9Qn5YOe0D0FH1
+username berten privilege 15 secret 5 $1$Xh3X$RcAQJk0hK4yTVG3b2Iilk.
+username ifyildiz privilege 15 secret 5 $1$DEt0$MgSsw0Eq5whXtnxO6/fbc/
+
+
+--NTP_SERVER--
+ntp master 1
+ntp server 10.10.10.1 version 2
+
+
+
