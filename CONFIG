@@ -1,3 +1,13 @@
+--(SSH key - ubuntu)--
+$cd /home/user/.ssh
+$ssh-keygen (id_rsa.pub generate)
+$fold -b -w  76 ~/.ssh/id_rsa.pub
+$ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub
+!
+ip ssh pubkey-chain
+username admin
+key-string (paste the encrypted key id)
+
 --VTP--
 vtp mode server 
 vtp domain L3SW
