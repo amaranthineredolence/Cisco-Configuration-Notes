@@ -2,7 +2,7 @@
 $cd /home/user/.ssh
 $ssh-keygen -b 1024 -t rsa (rsa file path)
 $fold -b -w  70 #file path#
-$ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub
+$ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub (check the hash for correction)
 !
 ip ssh pubkey-chain
 username admin
