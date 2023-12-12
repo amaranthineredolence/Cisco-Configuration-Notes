@@ -1,7 +1,7 @@
 --(SSH key - ubuntu)--
 $cd /home/user/.ssh
-$ssh-keygen (id_rsa.pub generate)
-$fold -b -w  76 ~/.ssh/id_rsa.pub
+$ssh-keygen -b 1024 -t rsa (rsa file path)
+$fold -b -w  70 #file path#
 $ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub
 !
 ip ssh pubkey-chain
