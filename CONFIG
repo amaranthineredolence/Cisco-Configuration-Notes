@@ -1,7 +1,6 @@
 --(SSH key - ubuntu)--
-$cd /home/user/.ssh
-$ssh-keygen -b 1024 -t rsa (rsa file path) 
-$fold -b -w  70 #file path# ==>
+$ssh-keygen -b 2048 -t rsa (rsa file path) 
+$fold -b -w  70 #(rsa.pub file path)# ==>
 $ssh-keygen -E md5 -lf (rsa file path) ==> (check the hash for correction)
 $ssh-keygen -f (rsa file path) -l ==>
 !
