@@ -74,4 +74,10 @@ ntp master 1
 ntp server 10.10.10.1 version 2
 
 
+--ERASE CONFIG--
+erase startup-config
+delete flash:vlan.dat 
+reload
+
+
 
