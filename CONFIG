@@ -8,6 +8,13 @@ ip ssh pubkey-chain
 username admin
 key-string (paste the encrypted key id)
 
+
+--INTERACTIVE COMMANDS IN CISCO IOS/BASH (KEY PRESS)--
+#INTERACTIVE
+no username testuser<IQ>[confirm]<R>y
+#ENDS_INTERACTIVE
+
+
 --VTP--
 vtp mode server 
 vtp domain L3SW
