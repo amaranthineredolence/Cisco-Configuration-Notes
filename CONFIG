@@ -48,15 +48,22 @@ ip helper-address 10.0.0.1 (dhcp relay for router. IP = client inbound interace 
 
 
 --HSRP--
-R1(config)#interface GigabitEthernet 0/0/0
-R1(config-if)#ip address 192.168.1.2 255.255.255.0
+R1#conf t
+R2(config)#interface FastEthernet0/1
+R1(config-if)#ip address 172.16.1.3 255.255.255.0
+R1(config-if)#standby 10 preempt (opt)
+R1(config-if)#standby 10 ip 172.16.1.1
 R1(config-if)#no shutdown
-R1(config-if)#standby 1 ip 192.168.1.1
+R1(config-if)#end
 !
-R2(config)#interface GigabitEthernet 0/0/1
-R2(config-if)#ip address 191.168.1.3 255.255.255.0
+R2#conf t
+R2(config)#interface FastEthernet0/1
+R2(config-if)#ip address 172.16.1.2 255.255.255.0
+R2(config-if)#standby 10 priority 90 (opt)
+R2(config-if)#standby 10 ip 172.16.1.1
 R2(config-if)#no shutdown
-R2(config-if)#standby 1 ip 192.168.1.1
+R2(config-if)#end
+#show standby
 (higher ip address router will be the active one, the other will be in standby)
 
 
