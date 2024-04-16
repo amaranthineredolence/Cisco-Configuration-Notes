@@ -28,7 +28,8 @@ ip dhcp excluded-address 10.10.30.0 10.10.30.10
 !
 ip dhcp pool vlan10
  network 10.10.10.0 255.255.255.0
- default-router 10.10.10.1 
+ default-router 10.10.10.1
+ dns-server 10.10.10.1
 !
 ip dhcp pool vlan20
  network 10.10.20.0 255.255.255.0
