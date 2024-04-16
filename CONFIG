@@ -43,6 +43,7 @@ service dhcp (interface)
 (sh ip dhcp binding)
 (sh ip dhcp pool)
 !
+ip address dhcp (router dhcp client)
 ip helper-address 10.0.0.1 (dhcp relay for router. IP = client inbound interace of router)
 
 --SSH--
