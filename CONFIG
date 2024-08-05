@@ -158,7 +158,6 @@ ntp server 10.10.10.1 version 2
 
 --ERASE CONFIG--
 erase startup-config
-clear config
 delete flash:vlan.dat
 write erase
 reload
